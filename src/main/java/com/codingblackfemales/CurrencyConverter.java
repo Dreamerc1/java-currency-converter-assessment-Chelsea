@@ -16,6 +16,12 @@ PSUDOCODE
 
 public class CurrencyConverter {
 
+    // protected double amount;
+
+    // public CurrencyConverter(double amount){
+    //     this.amount = amount;
+    // };
+
 
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount){
         // if(sourceCurrencyCode != destinationCurrencyCode){
