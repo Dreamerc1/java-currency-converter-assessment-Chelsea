@@ -2,18 +2,18 @@ package com.codingblackfemales;
 public class BasicCurrencyConverter {
     // impliment the currency converter interface
 
-    use CurrenciesGBP
-    to access  currency rates.
+//     use CurrenciesGBP
+//     to calculate exchange rates and amounts.
 
 
-    try(){
+//     try(){
 
-    }catch{
-/*invalid or missing  source code
- * invalid or missing destination code
- * invalid or null amount
-*/
-    }
+//     }catch{
+// /*invalid or missing  source code
+//  * invalid or missing destination code
+//  * invalid or null amount
+// */
+//     }
 
     /*
      * PERAMETERS

@@ -3,6 +3,11 @@ package com.codingblackfemales;
 /*PREP
  * 
  * PERAMETERS
+ * currencyConverter()
+ * convertCurrency()
+ * getCurrency()
+ * getExchangeRate()
+ * 
 
 
 RESULTS
@@ -16,11 +21,20 @@ PSUDOCODE
 
 public class CurrencyConverter {
 
-    // protected double amount;
+    protected double amount;
+    protected String sourceCurrencyCode;
+    protected String destinationCurrencyCode;
 
-    // public CurrencyConverter(double amount){
-    //     this.amount = amount;
-    // };
+
+
+    // build out 
+
+    // building a constructor for the currency constructor to support OOP
+    public CurrencyConverter(double amount, String sourceCurrencyCode, String destinationCurrencyCode){
+        this.amount = amount;
+        this.sourceCurrencyCode = sourceCurrencyCode;
+        this.destinationCurrencyCode = destinationCurrencyCode;
+    };
 
 
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount){
@@ -47,20 +61,20 @@ EXAMPLES
 
 PSUDOCODE
     //  */
-    //     double convertedAmount = 0;
-    //     try{
+        double convertedAmount = 0;
+        // try{
 
-    //     }catch{
-    //         System.err.println(err);
-    //     }
-    //     return convertedAmount;
+        // }catch{
+        //     System.err.println(err);
+        // }
+        return convertedAmount;
     }
 
 
-    public String[] getCurrencyCodes(){
+    public String[] getCurrencyCodes(){ //requested method getCurrencyCodes().
 
-        String[] currencyCode = {"GBP","USD","JYP","EUR"};
-        return currencyCode;
+        String[] currencyCode = {"GBP","USD","JYP","EUR"}; //array string containing all currency codes being used by the application.
+        return currencyCode; //returns the array of codes when the method getCurrencyCodes()
         
         }
          /*
@@ -80,27 +94,34 @@ user selcets USD as another currency, the code returns that currency
 PSUDOCODE
      */
     
-    public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode){
+//     public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode){
 
-        if(sourceCurrencyCode != destinationCurrencyCode){
-            return 
-        }
- /*
-     * PERAMETERS
-source currency code
-destination currency code.
+//         double rate = 0;
 
-once the two have been selected the code return the exchange rate for the currency conversion
+//             if(sourceCurrencyCode != destinationCurrencyCode){
+//                 return rate = ;
+//             }else{
+//                 System.out.println("Exchange rate unavailable for invalid destination.");
+//             }
+        
 
-RESULTS
+//         // use getAllExchangeRates() and iterate through to find the rate from sourceCurrencyCode to destination. 
+//  /*
+//      * PERAMETERS
+// source currency code
+// destination currency code.
+
+// once the two have been selected the code return the exchange rate for the currency conversion
+
+// RESULTS
 
 
-EXAMPLES
+// EXAMPLES
 
 
-PSUDOCODE
-     */
-    }
+// PSUDOCODE
+//      */
+//     }
 
 
     
