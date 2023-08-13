@@ -5,15 +5,16 @@ public class BasicCurrencyConverter {
 //     use CurrenciesGBP
 //     to calculate exchange rates and amounts.
 
-
-//     try(){
-
-//     }catch{
+try {
+    
+} catch (Exception e) {
 // /*invalid or missing  source code
 //  * invalid or missing destination code
 //  * invalid or null amount
-// */
-//     }
+}finally{
+    System.out.println("Thank you for using currency converter.");
+}
+
 
     /*
      * PERAMETERS
