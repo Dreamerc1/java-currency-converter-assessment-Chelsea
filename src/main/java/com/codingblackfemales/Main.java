@@ -1,12 +1,11 @@
 package com.codingblackfemales;
 
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
-        for (Map.Entry<String,double> entry : CurrenciesGBP){
-            System.out.println("Key = " + entry.getKey() +
-                                 ", Value = " + entry.getValue());
-        }
-    }
+                you need to build a constructor that gets the target excahnge rate 
+        
 }

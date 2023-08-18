@@ -38,7 +38,14 @@ public class CurrencyConverter {
 
 
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount){
-        // if(sourceCurrencyCode != destinationCurrencyCode){
+        double convertedAmount = 0;
+        try {
+
+
+            for(getCurrencyCodes() i : sourceCurrencyCode){
+                
+            }
+            // if(sourceCurrencyCode != destinationCurrencyCode){
         //     return amount * getExchangeRate();
         // }else{
 
@@ -61,20 +68,34 @@ EXAMPLES
 
 PSUDOCODE
     //  */
-        double convertedAmount = 0;
+        
         // try{
 
         // }catch{
         //     System.err.println(err);
         // }
-        return convertedAmount;
+        } catch (Exception e) {
+            // TODO: handle exception
+        }finally{
+            return convertedAmount;
+        }    
+        
     }
 
 
     public String[] getCurrencyCodes(){ //requested method getCurrencyCodes().
-
         String[] currencyCode = {"GBP","USD","JYP","EUR"}; //array string containing all currency codes being used by the application.
-        return currencyCode; //returns the array of codes when the method getCurrencyCodes()
+        
+
+        try {
+            //  the array of codes when the method getCurrencyCodes()
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // TODO: handle exception
+        }finally{
+            return currencyCode; //returns 
+        }
+
+       
         
         }
          /*
@@ -94,15 +115,23 @@ user selcets USD as another currency, the code returns that currency
 PSUDOCODE
      */
     
-//     public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode){
+    public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode){
 
-//         double rate = 0;
+        double rate = 0;
 
-//             if(sourceCurrencyCode != destinationCurrencyCode){
-//                 return rate = ;
-//             }else{
-//                 System.out.println("Exchange rate unavailable for invalid destination.");
-//             }
+        try {
+            if(sourceCurrencyCode != destinationCurrencyCode){
+                return rate = ;
+            }else{
+                System.out.println("Exchange rate unavailable for invalid destination.");
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }finally{
+            return rate;
+        }
+
+            
         
 
 //         // use getAllExchangeRates() and iterate through to find the rate from sourceCurrencyCode to destination. 
@@ -121,7 +150,7 @@ PSUDOCODE
 
 // PSUDOCODE
 //      */
-//     }
+    }
 
 
     
