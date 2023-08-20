@@ -1,4 +1,4 @@
-package com.codingblackfemales;
+package com.codingblackfemales.Musings;
 
 public abstract class CurrencyConverterAbs {
     public abstract double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount); 
