@@ -1,18 +1,23 @@
-package com.codingblackfemales;
+package com.codingblackfemales.Musings;
 
-public interface GetCurrencyCodes {
+public class GetCurrencyCodes extends CurrencyConverterAbs{
+
+    @Override
+    public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'convertCurrency'");
+    }
+
+    @Override
+    public String[] getCurrencyCodes() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCurrencyCodes'");
+    }
+
+    @Override
+    public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getExchangeRate'");
+    }
     
-
-    final String[] currencyCode = {"GBP","USD","JYP","EUR"};
-
-    void getCurrencyCodes();
-    // static int add(int x, int y){
-    //     return x + y;
-    // }
-
-    // default void fly(){
-    //     startEngines();
-    //     System.out.println("I'm flying!!");
-    // }
-    // void 
 }
