@@ -12,4 +12,5 @@ abstract class Converter {
     public void getCurrencyCodes(){
         return;
     }
+    
 }

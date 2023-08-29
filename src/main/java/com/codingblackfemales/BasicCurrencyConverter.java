@@ -1,35 +1,35 @@
 package com.codingblackfemales;
 public class BasicCurrencyConverter {
-    // impliment the currency converter interface
+//     // impliment the currency converter interface
 
-//     use CurrenciesGBP
-//     to calculate exchange rates and amounts.
+// //     use CurrenciesGBP
+// //     to calculate exchange rates and amounts.
 
-try {
+// try {
     
-} catch (Exception e) {
-// /*invalid or missing  source code
-//  * invalid or missing destination code
-//  * invalid or null amount
-}finally{
-    System.out.println("Thank you for using currency converter.");
-}
+// } catch (Exception e) {
+// // /*invalid or missing  source code
+// //  * invalid or missing destination code
+// //  * invalid or null amount
+// }finally{
+//     System.out.println("Thank you for using currency converter.");
+// }
 
 
-    /*
-     * PERAMETERS
-convert currency ()
-get exchange rates()
-get currency codes()
+//     /*
+//      * PERAMETERS
+// convert currency ()
+// get exchange rates()
+// get currency codes()
 
 
-RESULTS
+// RESULTS
 
-UI when user selects thes perameters getters get the the data that has been selected.
+// UI when user selects thes perameters getters get the the data that has been selected.
 
-EXAMPLES
+// EXAMPLES
 
 
-PSUDOCODE
-     */
+// PSUDOCODE
+//      */
 }
