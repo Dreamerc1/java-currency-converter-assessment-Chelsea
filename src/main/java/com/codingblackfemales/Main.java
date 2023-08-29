@@ -17,14 +17,11 @@ public class Main {
                 //     System.out.println(key);
                 // }
 
+
                 CurrencyConvert convert = new CurrencyConvert();
+                // creating a new instance of currency converter
                 convert.getCurrencyCodes();
-                // GetCodes getCodes = new GetCodes();
-                // // Accessing the currecy codes class
-                // getCodes.currencyCode();
-                // // invoking the currencyCode method that returns an array of currency codes
-                // System.out.println("these are the code" + Arrays.toString(getCodes.currencyCode()));
+                // invodes the method that gets the array of codes available from currency converter
                 
-       
     }
 }
