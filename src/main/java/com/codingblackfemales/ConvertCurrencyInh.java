@@ -32,7 +32,11 @@ public class ConvertCurrencyInh extends Converter{
 
         try {
              if(amount > 0){
-                convertedAmount = sourceCurrencyCode.getValue() * amount;
+                CurrenciesGBP currenciesGBP = new CurrenciesGBP();
+                // currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
+                double transactionExchangeRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
+                // above should be how we get the to the exchange rate held in the hashmap
+                convertedAmount = transactionExchangeRate * amount;
                  /* if you know the exchange rate currency / exchangeRate
         * usa/eur exhange rate excample
         rate may be 0.631 you want to convert 100USD to EUR
