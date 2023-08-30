@@ -23,5 +23,10 @@ public class Main {
                 convert.getCurrencyCodes();
                 // invodes the method that gets the array of codes available from currency converter
                 
+                CurrenciesGBP currenciesGBP = new CurrenciesGBP();
+                if (!currenciesGBP.getAllExchangeRates().contains(inputCode)){
+                    // throws custom exception 
+                    // ask to choose another code
+                }
     }
 }
