@@ -4,7 +4,7 @@ public class ConvertCurrencyInh extends Converter{
 
     double amount;
 // do you need another variable that will show what the amount converts to? and use a getter to show it.
-    public ConvertCurrencyInh(String sourceCurrencyCode; String destinationCurrencyCode; double amount){
+    public ConvertCurrencyInh(String sourceCurrencyCode, String destinationCurrencyCode, double amount){
         super(sourceCurrencyCode, destinationCurrencyCode);
         this.setAmount(inputAmount);
     }
@@ -21,24 +21,24 @@ public class ConvertCurrencyInh extends Converter{
         double convertedAmount = 0;
         try {
             if( amount <= 0){
-            System.out.println("Invalid amount, please try again")
+            System.out.println("Invalid amount, please try again");
             convertedAmount = 0;
             }
-        } catch (Exception e) 
-        //create custom exception to throw 
-        {
-            // TODO: handle exception
+        } catch(/*custom exception */){
+    //create custom exception to throw 
+        } catch (Exception e){
+        e.printStackTrace(null);
         }
 
         try {
              if(amount > 0){
-                sourceCurrencyCode.getKey() * 
+                convertedAmount = sourceCurrencyCode.getValue() * amount;
                  /* if you know the exchange rate currency / exchangeRate
         * usa/eur exhange rate excample
         rate may be 0.631 you want to convert 100USD to EUR
         100 *  0.631 you get 63.10.
         */
-
+                System.out.println(amount, sourceCurrencyCode.getKey() + " will convert to " + convertedAmount, destinationCurrencyCode.getKey()+ ", do you wish to proceed?");
             }
         } catch (Exception e) {
             // TODO: handle exception
