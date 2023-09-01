@@ -2,7 +2,7 @@ package com.codingblackfemales;
 
 import java.util.Arrays;
 
-public class CurrencyConvert {
+public class CurrencyConverter {
     
     public void getCurrencyCodes(){
         // get currency codes method

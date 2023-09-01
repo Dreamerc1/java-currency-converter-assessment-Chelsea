@@ -24,10 +24,10 @@ public class ConvertCurrencyInh extends Converter{
             System.out.println("Invalid amount, please try again");
             convertedAmount = 0;
             }
-        } catch(/*custom exception */){
+        // } catch(/*custom exception */){
     //create custom exception to throw 
         } catch (Exception e){
-        e.printStackTrace(null);
+        e.printStackTrace();
         }
 
         try {
