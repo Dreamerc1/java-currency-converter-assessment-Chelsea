@@ -1,12 +1,14 @@
 package com.codingblackfemales;
 
+import com.codingblackfemales.Exceptions.InsufficientAmountEntered;
+
 public class ConvertCurrencyInh extends Converter{
 
     double amount;
 // do you need another variable that will show what the amount converts to? and use a getter to show it.
     public ConvertCurrencyInh(String sourceCurrencyCode, String destinationCurrencyCode, double amount){
         super(sourceCurrencyCode, destinationCurrencyCode);
-        this.setAmount(inputAmount);
+        this.setAmount(amount);
     }
 
     public double getAmount(){
@@ -21,12 +23,13 @@ public class ConvertCurrencyInh extends Converter{
         double convertedAmount = 0;
         try {
             if( amount <= 0){
-            System.out.println("Invalid amount, please try again");
+            
             convertedAmount = 0;
             }
         // } catch(/*custom exception */){
     //create custom exception to throw 
-        } catch (Exception e){
+        } catch (InsufficientAmountEntered e){
+        System.out.println("Invalid amount entered to be converted, please eneter a number greater than 0.");
         e.printStackTrace();
         }
 
@@ -45,6 +48,8 @@ public class ConvertCurrencyInh extends Converter{
                 System.out.println(amount, sourceCurrencyCode.getKey() + " will convert to " + convertedAmount, destinationCurrencyCode.getKey()+ ", do you wish to proceed?");
             }
         } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Oops, something went wrong");
             // TODO: handle exception
         }
            

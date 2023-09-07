@@ -7,7 +7,7 @@ public class BasicCurrencyConverter {
 
 // try {
     
-// } catch (Exception e) {
+// } catch (First exception | Exception e) {
 // // /*invalid or missing  source code
 // //  * invalid or missing destination code
 // //  * invalid or null amount
