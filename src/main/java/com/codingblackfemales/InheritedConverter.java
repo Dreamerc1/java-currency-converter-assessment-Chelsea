@@ -1,10 +1,10 @@
 package com.codingblackfemales;
 
-abstract class Converter {
+abstract class InheritedConverter {
     protected String sourceCurrencyCode;
     protected String destinationCurrencyCode; 
 
-    public Converter(String sourceCurrencyCode, String destinationCurrencyode){
+    public InheritedConverter(String sourceCurrencyCode, String destinationCurrencyode){
         this.sourceCurrencyCode = sourceCurrencyCode;
         this.sourceCurrencyCode = destinationCurrencyCode;
     }

@@ -12,13 +12,13 @@ public class Main {
         // System.out.println("Hello World!");
         // CurrenciesGBP currenciesGBP = new CurrenciesGBP();
         CurrencyConverter currencyConverter = new CurrencyConverter();
-        String inputCode = "";
+        String sourceCurrencyCode = "";
 
-        String outputCode = "";
+        String destinationCurrencyCode = "";
 
-        // boolean findCodeIn = currenciesGBP.getAllExchangeRates().containsKey(inputCode);
+        // boolean findCodeIn = currenciesGBP.getAllExchangeRates().containsKey(sourceCurrencyCode);
 
-        // boolean findCodeOut = currenciesGBP.getAllExchangeRates().containsKey(outputCode);
+        // boolean findCodeOut = currenciesGBP.getAllExchangeRates().containsKey(destinationCurrencyCode);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -28,21 +28,23 @@ public class Main {
 
         System.out.println("Please enter your chosen destination currency.");
 
-        inputCode = scanner.nextLine().toUpperCase();
+        destinationCurrencyCode = scanner.nextLine().toUpperCase();
 
-        System.out.println("Please enter the code of the currency you wish to convert to.");
+        System.out.println("Please enter the code of the currency you wish to convert from.");
 
-        outputCode = scanner.nextLine().toUpperCase();
+        sourceCurrencyCode = scanner.nextLine().toUpperCase();
 
         System.out.println("Please enter the amount that you would like to convert.");
 
         double amount = scanner.nextDouble();
 
-        // System.out.printf("You would like to convert "+ inputCode, amount +" into " + outputCode+ ". Is this correct?");
+        // System.out.printf("You would like to convert "+ Currency, amount +" into " + destinationCurrencyCode+ ". Is this correct?");
 
         String formatAmount = String.format("%.2f", amount);
         
-        System.out.printf("You would like to convert %s %s into %s. Is this correct?", inputCode, formatAmount, outputCode);
+        System.out.printf("You would like to convert %s %s into %s. Is this correct?\n", formatAmount, sourceCurrencyCode, destinationCurrencyCode);
+
+        System.out.println("Please type yes or no");
         
         String transactionCorrect = scanner.next();
 
@@ -51,8 +53,10 @@ public class Main {
         if(!transactionCorrect.equalsIgnoreCase("yes")){
             System.out.println("Please start again.");
         }
-FindRates findRates = new FindRates();
-        findRates.findValue(inputCode);
+        // System.out.printf("The exchange rate we can offer you for this transaction is %s " + currencyConverter.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode)+"%.");
+        System.out.println("The exchange rate we can offer you for this transaction is " + currencyConverter.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode) + "%." );
+
+        System.out.println("This amount converts to " + currencyConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, amount));
         // if(!findCodeIn){
         // throw CountryCodeUnavailableException("The source code that you have entered is unavailable");
         // System.out.println("I'm sorry, you have enetered a source code tha we do not convert from yet.");
@@ -78,7 +82,7 @@ FindRates findRates = new FindRates();
                 // convert.getCurrencyCodes();
                 // // invodes the method that gets the array of codes available from currency converter
                 
-                // // if (!currenciesGBP.getAllExchangeRates().containsKey(inputCode)){
+                // // if (!currenciesGBP.getAllExchangeRates().containsKey(sourceCurrencyCode)){
                 // //     // throws custom exception 
                 // //     // ask to choose another code
                 // // }

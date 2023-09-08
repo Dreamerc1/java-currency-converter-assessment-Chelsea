@@ -2,7 +2,7 @@ package com.codingblackfemales;
 
 import com.codingblackfemales.Exceptions.InsufficientAmountEntered;
 
-public class ConvertCurrencyInh extends Converter{
+public class ConvertCurrencyInh extends InheritedConverter{
 
     double amount;
 // do you need another variable that will show what the amount converts to? and use a getter to show it.
@@ -26,8 +26,6 @@ public class ConvertCurrencyInh extends Converter{
             
             convertedAmount = 0;
             }
-        // } catch(/*custom exception */){
-    //create custom exception to throw 
         } catch (InsufficientAmountEntered e){
         System.out.println("Invalid amount entered to be converted, please eneter a number greater than 0.");
         e.printStackTrace();
@@ -35,6 +33,7 @@ public class ConvertCurrencyInh extends Converter{
 
         try {
              if(amount > 0){
+                
                 CurrenciesGBP currenciesGBP = new CurrenciesGBP();
                 // currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
                 double transactionExchangeRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);

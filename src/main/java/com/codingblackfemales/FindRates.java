@@ -4,14 +4,14 @@ import com.codingblackfemales.Exceptions.CountryCodeUnavailableException;
 import com.codingblackfemales.Exceptions.ExchangeRateUnavilable;
 
 public class FindRates {
-    public static Double findValue(String checkCodeGetValue){
+    public Double findValue(String checkCodeGetValue){
         // method will use binary search to find the value in the key value pair of the currency codes array.
         CurrenciesGBP currenciesgbp = new CurrenciesGBP();
         Double rate = currenciesgbp.getAllExchangeRates().get(checkCodeGetValue);
         try {
             
             if(rate != null){
-               System.out.println("The exchange rate for this transaction is " + rate);
+               return rate;
                
             }
 
