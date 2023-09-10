@@ -21,13 +21,8 @@ public class CurrencyConverter {
     
     public String getCurrencyCodes(){
         // returns an array of currency codes available.
-        try {
-            GetCodes getCodes = new GetCodes();
-            return Arrays.toString(getCodes.currencyCode());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        GetCodes getCodes = new GetCodes();
+        return Arrays.toString(getCodes.currencyCode());
     }
 
     public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode){
@@ -45,6 +40,7 @@ public class CurrencyConverter {
         return Double.parseDouble(formatExchangeRate);
         
     }
+    
     
 
 }

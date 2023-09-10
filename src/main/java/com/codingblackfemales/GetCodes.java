@@ -28,6 +28,5 @@ public class GetCodes {
                 return currencyCodes;
                 // returns a list of the available currency codes.
     }
-    
    
 }
