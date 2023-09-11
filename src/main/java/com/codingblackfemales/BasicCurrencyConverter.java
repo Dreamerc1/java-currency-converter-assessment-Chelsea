@@ -1,16 +1,11 @@
 package com.codingblackfemales;
 
-import java.util.Arrays;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
-import com.codingblackfemales.CurrenciesGBP;
 
+import com.codingblackfemales.Exceptions.CountryCodeUnavailableException;
 
-public class Main {
+public class BasicCurrencyConverter {
     public static void main(String[] args) {
-        // System.out.println("Hello World!");
-        // CurrenciesGBP currenciesGBP = new CurrenciesGBP();
         CurrencyConverter currencyConverter = new CurrencyConverter();
         String sourceCurrencyCode = "";
 
@@ -34,13 +29,17 @@ public class Main {
 
         sourceCurrencyCode = scanner.nextLine().toUpperCase();
 
+        currencyConverter.checkCode(destinationCurrencyCode, sourceCurrencyCode);
+
         System.out.println("Please enter the amount that you would like to convert.");
+        
 
         double amount = scanner.nextDouble();
-
+        ConvertCurrencyInh convertCurrencyInh = new ConvertCurrencyInh(sourceCurrencyCode, destinationCurrencyCode, amount);
+        convertCurrencyInh.setAmount(amount);
         // System.out.printf("You would like to convert "+ Currency, amount +" into " + destinationCurrencyCode+ ". Is this correct?");
 
-        String formatAmount = String.format("%.2f", amount);
+        String formatAmount = String.format("%.2f", convertCurrencyInh.getAmount());
         
         System.out.printf("You would like to convert %s %s into %s. Is this correct?\n", formatAmount, sourceCurrencyCode, destinationCurrencyCode);
 
@@ -54,10 +53,20 @@ public class Main {
             System.out.println("Please start again.");
         }
         // System.out.printf("The exchange rate we can offer you for this transaction is %s " + currencyConverter.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode)+"%.");
-        System.out.println("The exchange rate we can offer you for this transaction is " + currencyConverter.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode) + "%." );
+        // System.out.println("The exchange rate we can offer you for this transaction is " + currencyConverter.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode) + "%." );
+// ConvertCurrencyInh convertCurrencyInh = new ConvertCurrencyInh(sourceCurrencyCode, destinationCurrencyCode, amount);
+// currencyConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, amount);
+// // convertCurrencyInh.convertAmount(amount);
+//         System.out.println("This amount converts to " + currencyConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, amount));
+       
+ CurrenciesGBP currenciesGBP = new CurrenciesGBP();
+        double transactionExchangeRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
+        System.out.println("your transactional exchange rate is "+transactionExchangeRate);
 
-        System.out.println("This amount converts to " + currencyConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, amount));
-        // if(!findCodeIn){
+        System.err.println("This amount converts to ");
+        currencyConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, convertCurrencyInh.getAmount());
+
+// if(!findCodeIn){
         // throw CountryCodeUnavailableException("The source code that you have entered is unavailable");
         // System.out.println("I'm sorry, you have enetered a source code tha we do not convert from yet.");
         // }
@@ -87,4 +96,6 @@ public class Main {
                 // //     // ask to choose another code
                 // // }
     }
+    
+    
 }
