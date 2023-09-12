@@ -7,13 +7,11 @@ import com.codingblackfemales.Exceptions.CountryCodeUnavailableException;
 public class BasicCurrencyConverter {
     public static void main(String[] args) {
         CurrencyConverter currencyConverter = new CurrencyConverter();
+        // contains the basic UI for the currency converter, where user interactions will be controlled from.
+        
         String sourceCurrencyCode = "";
 
         String destinationCurrencyCode = "";
-
-        // boolean findCodeIn = currenciesGBP.getAllExchangeRates().containsKey(sourceCurrencyCode);
-
-        // boolean findCodeOut = currenciesGBP.getAllExchangeRates().containsKey(destinationCurrencyCode);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -31,12 +29,13 @@ public class BasicCurrencyConverter {
 
         currencyConverter.checkCode(destinationCurrencyCode, sourceCurrencyCode);
 
-        System.out.println("Please enter the amount that you would like to convert.");
-        
+        System.out.println("Please enter the amount that you would like to convert.");       
 
         double amount = scanner.nextDouble();
         ConvertCurrencyInh convertCurrencyInh = new ConvertCurrencyInh(sourceCurrencyCode, destinationCurrencyCode, amount);
         convertCurrencyInh.setAmount(amount);
+        System.out.println("get" +convertCurrencyInh.getAmount());
+        System.out.println("set" + convertCurrencyInh.setAmount(amount));
         // System.out.printf("You would like to convert "+ Currency, amount +" into " + destinationCurrencyCode+ ". Is this correct?");
 
         String formatAmount = String.format("%.2f", convertCurrencyInh.getAmount());
@@ -46,9 +45,7 @@ public class BasicCurrencyConverter {
         System.out.println("Please type yes or no");
         
         String transactionCorrect = scanner.next();
-
-        
-
+      
         if(!transactionCorrect.equalsIgnoreCase("yes")){
             System.out.println("Please start again.");
         }

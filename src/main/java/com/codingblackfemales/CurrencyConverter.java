@@ -20,8 +20,8 @@ public class CurrencyConverter {
     // return amount;
     
     ConvertCurrencyInh convertCurrencyInh = new ConvertCurrencyInh(sourceCurrencyCode, destinationCurrencyCode, amount);
-    System.out.println(amount);
-    return convertCurrencyInh.convertAmount(amount);
+    convertCurrencyInh.convertAmount(convertCurrencyInh.getAmount());
+    
 
     }
     

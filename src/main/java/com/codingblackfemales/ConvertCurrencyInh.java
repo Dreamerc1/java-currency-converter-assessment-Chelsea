@@ -16,37 +16,24 @@ public class ConvertCurrencyInh extends InheritedConverter{
         return amount;
     }
 
-    public double setAmount(double inputAmount){
-        if(inputAmount <= 0){
-            amount = 0;
-            throw new InsufficientAmountEntered("Invalid amount entered to be converted, please enter a number greater than 0.");
+    public double setAmount(double amount){
+        if(amount <= 0){
+            throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
         }
-        return amount;
+        return 0;
     }
 
     public double convertAmount(double amount){
-        // // double convertedAmount = 0; getting rid
-        // try {
-        //       CurrencyConverter currencyConverter = new CurrencyConverter();
+        try {
+             CurrencyConverter currencyConverter = new CurrencyConverter();
+              CurrenciesGBP currenciesGBP = new CurrenciesGBP();
               
-        //        double transactionExchangeRate = currencyConverter.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
-        //         // double transactionExchangeRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
-        //         // double 
-        //         System.out.println("the transaction rate is" + transactionExchangeRate);
-        //         setAmount(transactionExchangeRate * amount);
-        //          /* if you know the exchange rate currency / exchangeRate
-        // * usa/eur exhange rate excample
-        // rate may be 0.631 you want to convert 100USD to EUR
-        // 100 *  0.631 you get 63.10.
-        // */
-        //         // System.out.println(amount, sourceCurrencyCode.getKey() + " will convert to " + convertedAmount, destinationCurrencyCode.getKey()+ ", do you wish to proceed?");
-        //         System.out.printf("%.2f %s will convert to %.2f %s, do you wish to proceed?%n", amount, sourceCurrencyCode, convertedAmount, destinationCurrencyCode);
-        //         // return convertedAmount;
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        //     System.out.println("Oops, something went wrong");
-        // }
-        return amount;
-       
+               double sourceRate = currenciesGBP.getAllExchangeRates().get(sourceCurrencyCode);
+               double destinationRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
+               double convertedTransaction = amount * (destinationRate / sourceRate);
+               return convertedTransaction;       
+    }finally{
+        System.out.println("Thank you for using the currency converter!");
     }
+}
 }
