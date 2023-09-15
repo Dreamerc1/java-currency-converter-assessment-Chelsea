@@ -1,5 +1,6 @@
 package com.codingblackfemales;
 
+import com.codingblackfemales.Exceptions.ExchangeRateUnavilable;
 import com.codingblackfemales.Exceptions.InsufficientAmountEntered;
 
 public class ConvertCurrencyInh extends InheritedConverter{
@@ -17,21 +18,28 @@ public class ConvertCurrencyInh extends InheritedConverter{
     }
 
     public double setAmount(double amount){
-        if(amount <= 0){
-            throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
-        }
-        return 0;
+        return this.amount = amount;
     }
 
-    public double convertAmount(double amount){
+    public double convertAmount(String sourceCurrencyCode, String destinationCurrencyCode, double amount){
         try {
              CurrencyConverter currencyConverter = new CurrencyConverter();
               CurrenciesGBP currenciesGBP = new CurrenciesGBP();
               
-               double sourceRate = currenciesGBP.getAllExchangeRates().get(sourceCurrencyCode);
-               double destinationRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
-               double convertedTransaction = amount * (destinationRate / sourceRate);
+               Double sourceRate = currenciesGBP.getAllExchangeRates().get(sourceCurrencyCode);
+               Double destinationRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
+         
+               if(amount <= 0){
+            throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
+        }
+              
+               if(sourceRate == null || destinationRate == null){
+                throw new ExchangeRateUnavilable("Exchange rate is unnavailable for the currencies provided.");
+               }else{
+                double convertedTransaction = amount * (destinationRate / sourceRate);
                return convertedTransaction;       
+               }
+               
     }finally{
         System.out.println("Thank you for using the currency converter!");
     }

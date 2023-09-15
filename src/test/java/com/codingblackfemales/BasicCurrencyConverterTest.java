@@ -7,10 +7,8 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.codingblackfemales.Musings.BasicCurrencyConverter1;
-
 public class BasicCurrencyConverterTest {
-    private BasicCurrencyConverter1 basicCurrencyConverter;
+    private BasicCurrencyConverter basicCurrencyConverter;
     private Currencies currencies;
     private HashMap<String, Double> exchangeRates;
 
@@ -24,7 +22,7 @@ public class BasicCurrencyConverterTest {
         currencies = new CurrenciesStub();
         exchangeRates = currencies.getAllExchangeRates();
 
-        basicCurrencyConverter = new BasicCurrencyConverter1(currencies);
+        basicCurrencyConverter = new BasicCurrencyConverter(currencies);
     }
 
     @Test
@@ -185,7 +183,7 @@ public class BasicCurrencyConverterTest {
     @Test
     public void returnsEmptyResultWhenNoAvailaleCurrencyCodesAreFound() {
         Currencies currencies = new CurrenciesStubEmpty();
-        basicCurrencyConverter = new BasicCurrencyConverter1(currencies);
+        basicCurrencyConverter = new BasicCurrencyConverter(currencies);
         String[] currencyCodes = basicCurrencyConverter.getCurrencyCodes();
 
         assertTrue(currencyCodes.length == 0);

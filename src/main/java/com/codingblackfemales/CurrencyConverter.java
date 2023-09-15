@@ -20,7 +20,7 @@ public class CurrencyConverter {
     // return amount;
     
     ConvertCurrencyInh convertCurrencyInh = new ConvertCurrencyInh(sourceCurrencyCode, destinationCurrencyCode, amount);
-    convertCurrencyInh.convertAmount(convertCurrencyInh.getAmount());
+    return convertCurrencyInh.convertAmount(sourceCurrencyCode, destinationCurrencyCode, amount);
     
 
     }

@@ -33,12 +33,13 @@ public class BasicCurrencyConverter {
 
         double amount = scanner.nextDouble();
         ConvertCurrencyInh convertCurrencyInh = new ConvertCurrencyInh(sourceCurrencyCode, destinationCurrencyCode, amount);
-        convertCurrencyInh.setAmount(amount);
-        System.out.println("get" +convertCurrencyInh.getAmount());
-        System.out.println("set" + convertCurrencyInh.setAmount(amount));
+        // // convertCurrencyInh.getAmount(setAmount(amount));
+        // System.out.println("get" +convertCurrencyInh.getAmount());
+        // System.out.println("set" + convertCurrencyInh.setAmount(amount));
+        //   System.out.println("get" +convertCurrencyInh.getAmount());
         // System.out.printf("You would like to convert "+ Currency, amount +" into " + destinationCurrencyCode+ ". Is this correct?");
 
-        String formatAmount = String.format("%.2f", convertCurrencyInh.getAmount());
+        String formatAmount = String.format("%.2f", amount);
         
         System.out.printf("You would like to convert %s %s into %s. Is this correct?\n", formatAmount, sourceCurrencyCode, destinationCurrencyCode);
 
@@ -60,8 +61,9 @@ public class BasicCurrencyConverter {
         double transactionExchangeRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
         System.out.println("your transactional exchange rate is "+transactionExchangeRate);
 
-        System.err.println("This amount converts to ");
-        currencyConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, convertCurrencyInh.getAmount());
+        String formatTotal = String .format("%.2f", currencyConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, convertCurrencyInh.getAmount()));
+        System.err.println("This amount converts to "+formatAmount);
+        ;
 
 // if(!findCodeIn){
         // throw CountryCodeUnavailableException("The source code that you have entered is unavailable");
@@ -92,6 +94,7 @@ public class BasicCurrencyConverter {
                 // //     // throws custom exception 
                 // //     // ask to choose another code
                 // // }
+                scanner.close();
     }
     
     
