@@ -3,7 +3,7 @@ package com.codingblackfemales;
 import java.util.Arrays;
 
 import com.codingblackfemales.Exceptions.CountryCodeUnavailableException;
-import com.codingblackfemales.Exceptions.ExchangeRateUnavilable;
+import com.codingblackfemales.Exceptions.ExchangeRateUnavailable;
 
 public class CurrencyConverter {
     
@@ -33,9 +33,9 @@ public class CurrencyConverter {
 
     public void checkCode(String destinationCurrencyCode, String sourceCurrencyCode){
         if(!getCurrencyCodes().contains(destinationCurrencyCode)){
-            throw new CountryCodeUnavailableException("I'm sorry" +destinationCurrencyCode + "is not currently a currency that we carry. Please try another currency");
+            throw new CountryCodeUnavailableException("I'm sorry " +destinationCurrencyCode + "is not currently a currency that we carry. Please try another.");
         }else if(!getCurrencyCodes().contains(sourceCurrencyCode)){
-            throw new CountryCodeUnavailableException("I'm sorry " +sourceCurrencyCode + "is not a currency that we currently carry. Please select another currency.");
+            throw new CountryCodeUnavailableException("I'm sorry " +sourceCurrencyCode + "is not a currency that we currently carry. Please select another.");
         }
     }
 
@@ -48,7 +48,7 @@ public class CurrencyConverter {
             double sourceRate = findRates.findValue(sourceCurrencyCode);
             transactionExchangeRate =  sourceRate;
             formatExchangeRate = String.format("%.2f", transactionExchangeRate);
-        } catch (ExchangeRateUnavilable e) {
+        } catch (ExchangeRateUnavailable e) {
             System.out.println("We are unable to provide an exchange rate for this transaction.");
             return 0;
         } 

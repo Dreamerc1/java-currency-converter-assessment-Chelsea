@@ -60,9 +60,9 @@ public class BasicCurrencyConverter {
  CurrenciesGBP currenciesGBP = new CurrenciesGBP();
         double transactionExchangeRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
         System.out.println("your transactional exchange rate is "+transactionExchangeRate);
-
-        String formatTotal = String .format("%.2f", currencyConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, convertCurrencyInh.getAmount()));
-        System.err.println("This amount converts to "+formatAmount);
+double convertedCurrency = currencyConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, convertCurrencyInh.getAmount());
+        String formatTotal = String .format("%.2f", convertedCurrency);
+        System.err.println("This amount converts to "+formatTotal +" "+ destinationCurrencyCode);
         ;
 
 // if(!findCodeIn){

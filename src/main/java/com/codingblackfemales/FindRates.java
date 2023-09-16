@@ -1,7 +1,7 @@
 package com.codingblackfemales;
 
 import com.codingblackfemales.Exceptions.CountryCodeUnavailableException;
-import com.codingblackfemales.Exceptions.ExchangeRateUnavilable;
+import com.codingblackfemales.Exceptions.ExchangeRateUnavailable;
 
 public class FindRates {
     public Double findValue(String checkCodeGetValue){
@@ -15,7 +15,7 @@ public class FindRates {
                
             }
 
-        } catch (CountryCodeUnavailableException | ExchangeRateUnavilable e) {
+        } catch (CountryCodeUnavailableException | ExchangeRateUnavailable e) {
             System.out.println("I'm sorry, we are unable to provide details for that code.");
         }
         

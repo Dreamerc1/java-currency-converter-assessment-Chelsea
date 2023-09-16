@@ -1,6 +1,6 @@
 package com.codingblackfemales;
 
-import com.codingblackfemales.Exceptions.ExchangeRateUnavilable;
+import com.codingblackfemales.Exceptions.ExchangeRateUnavailable;
 import com.codingblackfemales.Exceptions.InsufficientAmountEntered;
 
 public class ConvertCurrencyInh extends InheritedConverter{
@@ -22,8 +22,9 @@ public class ConvertCurrencyInh extends InheritedConverter{
     }
 
     public double convertAmount(String sourceCurrencyCode, String destinationCurrencyCode, double amount){
+       double convertedTransaction = 0;
         try {
-             CurrencyConverter currencyConverter = new CurrencyConverter();
+            CurrencyConverter currencyConverter = new CurrencyConverter();
               CurrenciesGBP currenciesGBP = new CurrenciesGBP();
               
                Double sourceRate = currenciesGBP.getAllExchangeRates().get(sourceCurrencyCode);
@@ -34,14 +35,16 @@ public class ConvertCurrencyInh extends InheritedConverter{
         }
               
                if(sourceRate == null || destinationRate == null){
-                throw new ExchangeRateUnavilable("Exchange rate is unnavailable for the currencies provided.");
+                throw new ExchangeRateUnavailable("Exchange rate is unavailable for the currencies provided.");
                }else{
-                double convertedTransaction = amount * (destinationRate / sourceRate);
+                convertedTransaction = amount * (destinationRate / sourceRate);
                return convertedTransaction;       
                }
-               
-    }finally{
-        System.out.println("Thank you for using the currency converter!");
-    }
+        } catch (ExchangeRateUnavailable e) {
+            System.out.println("We are unable to offer an exchage rate for tis transaction.");
+            e.printStackTrace();
+        }
+        return convertedTransaction;
+        
 }
 }
