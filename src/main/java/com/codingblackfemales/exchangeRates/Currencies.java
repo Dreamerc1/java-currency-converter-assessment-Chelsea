@@ -1,4 +1,4 @@
-package com.codingblackfemales;
+package com.codingblackfemales.exchangeRates;
 
 import java.util.HashMap;
 

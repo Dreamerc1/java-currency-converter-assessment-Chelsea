@@ -1,31 +1,44 @@
-package com.codingblackfemales;
+package com.codingblackfemales.exchangeRates;
 
-import java.util.Arrays;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
-import com.codingblackfemales.exchangeRates.ConvertCurrencyInh;
-import com.codingblackfemales.exchangeRates.CurrencyConverter;
+import com.codingblackfemales.CurrenciesGBP;
+import com.codingblackfemales.Exceptions.CountryCodeUnavailableException;
 
+public class BasicCurrencyConverter implements CurrencyConverter {
+    private final CurrenciesGBP currenciesGBP = new CurrenciesGBP();
 
-public class Main {
-    public static void main(String[] args) {
-        CurrencyConverter currencyConverter = new CurrencyConverter();
-        BasicCurrencyConverter basicConverter = new BasicCurrencyConverter();
-        // contains the basic UI for the currency converter, where user interactions will be controlled from.
+    @Override
+    public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount){
+
+    }
+
+    @Override
+    public String[] getCurrencyCodes() {
+
+    }
+
+    @Override
+    public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode) {
+
+    }
+
+}
+
+// public class BasicCurrencyConverter {
+//     public static void main(String[] args) {
+//         CurrencyConverter currencyConverter = new CurrencyConverter();
+//         // contains the basic UI for the currency converter, where user interactions will be controlled from.
         
-        String sourceCurrencyCode = "";
+//         String sourceCurrencyCode = "";
 
-        String destinationCurrencyCode = "";
+//         String destinationCurrencyCode = "";
 
-        Scanner scanner = new Scanner(System.in);
+//         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Here are a list of the currencies codes currently available");
+//         System.out.println("Here are a list of the currencies codes currently available");
 
-        // System.out.println(currencyConverter.getCurrencyCodes());
-        System.out.println(basicConverter.getCurrencyCodes());
-        
+//         System.out.println(currencyConverter.getCurrencyCodes());
 
 //         System.out.println("Please enter your chosen destination currency.");
 
@@ -102,6 +115,8 @@ public class Main {
 //                 // //     // throws custom exception 
 //                 // //     // ask to choose another code
 //                 // // }
-                scanner.close();
-    }
-}
+//                 scanner.close();
+//     }
+    
+    
+// }

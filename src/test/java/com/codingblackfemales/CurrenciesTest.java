@@ -7,6 +7,8 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.codingblackfemales.exchangeRates.Currencies;
+
 public class CurrenciesTest {
     private Currencies currencies;
     private HashMap<String, Double> exchangeRates;

@@ -1,5 +1,6 @@
-package com.codingblackfemales;
+package com.codingblackfemales.exchangeRates;
 
+import com.codingblackfemales.CurrenciesGBP;
 import com.codingblackfemales.Exceptions.ExchangeRateUnavailable;
 import com.codingblackfemales.Exceptions.InsufficientAmountEntered;
 

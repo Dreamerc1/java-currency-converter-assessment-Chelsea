@@ -1,5 +1,6 @@
-package com.codingblackfemales;
+package com.codingblackfemales.exchangeRates;
 
+import com.codingblackfemales.CurrenciesGBP;
 import com.codingblackfemales.Exceptions.CountryCodeUnavailableException;
 import com.codingblackfemales.Exceptions.ExchangeRateUnavailable;
 

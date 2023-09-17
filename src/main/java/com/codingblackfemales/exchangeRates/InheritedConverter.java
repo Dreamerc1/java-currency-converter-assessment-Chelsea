@@ -1,4 +1,4 @@
-package com.codingblackfemales;
+package com.codingblackfemales.exchangeRates;
 
 abstract class InheritedConverter {
     protected String sourceCurrencyCode;

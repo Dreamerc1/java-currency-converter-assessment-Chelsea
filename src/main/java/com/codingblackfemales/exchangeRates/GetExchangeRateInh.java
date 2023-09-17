@@ -1,4 +1,4 @@
-package com.codingblackfemales;
+package com.codingblackfemales.exchangeRates;
 
 public class GetExchangeRateInh extends InheritedConverter{
 

@@ -2,6 +2,8 @@ package com.codingblackfemales;
 
 import java.util.HashMap;
 
+import com.codingblackfemales.exchangeRates.Currencies;
+
 public class CurrenciesStub implements Currencies {
     private HashMap<String, Double> exchangeRates;
 

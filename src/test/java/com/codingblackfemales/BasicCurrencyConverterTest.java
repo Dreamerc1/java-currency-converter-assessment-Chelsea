@@ -7,6 +7,9 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.codingblackfemales.exchangeRates.BasicCurrencyConverter;
+import com.codingblackfemales.exchangeRates.Currencies;
+
 public class BasicCurrencyConverterTest {
     private BasicCurrencyConverter basicCurrencyConverter;
     private Currencies currencies;
