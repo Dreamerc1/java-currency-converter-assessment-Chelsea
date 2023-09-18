@@ -5,8 +5,12 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        CurrenciesGBP currenciesGBP = new CurrenciesGBP();
-        System.out.println(currenciesGBP.getAllExchangeRates());
+
+        Currencies currencies = new CurrenciesGBP();
+        BasicCurrencyConverter basicConverter = new BasicCurrencyConverter(currencies);
+        basicConverter.getCurrencyCodes();
+
+        basicConverter.getExchangeRate("JPY", "USD");
         
     }
 }
