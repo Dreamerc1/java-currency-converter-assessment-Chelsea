@@ -15,12 +15,11 @@ public class BasicCurrencyConverter implements CurrencyConverter{
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) throws ExchangeRateUnavailable, InsufficientAmountEntered {
     
         try {
-            // CurrencyConverter currencyConverter = new CurrencyConverter();
-            // CurrenciesGBP currenciesGBP = new CurrenciesGBP();
 
         Double sourceRate = currencies.getAllExchangeRates().get(sourceCurrencyCode);
         Double destinationRate = currencies.getAllExchangeRates().get(destinationCurrencyCode);
             if(Double.isNaN(amount)  || amount <= 0){
+                System.out.println("Invalid request for conversion. Please enter an amount greater than 0.");
                 // throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
                 return 0.0;
             }
@@ -31,6 +30,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
                 throw new ExchangeRateUnavailable("Exchange rate is unavailable for the currencies provided.");
             }else{
                 convertedTransaction = amount * (destinationRate / sourceRate);
+                // convertedTransaction = amount * getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
             return convertedTransaction;       
             }
        
@@ -56,7 +56,6 @@ public class BasicCurrencyConverter implements CurrencyConverter{
                     i++;
                     
                 }
-                System.out.println(Arrays.toString(currencyCodes));
                 return currencyCodes;
     
         } catch (Exception e) {
@@ -79,10 +78,11 @@ public class BasicCurrencyConverter implements CurrencyConverter{
             }
 
             double transactionExchangeRate = 0;
-            if(sourceCurrencyCode.toUpperCase().equals("GBP")){
-                transactionExchangeRate = destinationRate/sourceRate;
-            }else{
+            if(!sourceCurrencyCode.toUpperCase().equals("GBP")){
                 transactionExchangeRate = destinationRate;
+                return destinationRate;
+            }else{
+                transactionExchangeRate = destinationRate/sourceRate;
             }
              
             return Double.parseDouble(String.format("%.2f", transactionExchangeRate));
@@ -91,5 +91,14 @@ public class BasicCurrencyConverter implements CurrencyConverter{
             e.printStackTrace();
             return 0;
         } 
+    }
+
+     public void checkCode(String destinationCurrencyCode, String sourceCurrencyCode){
+        String[] currencyCodes = getCurrencyCodes();
+        if(!Arrays.stream(currencyCodes).anyMatch(destinationCurrencyCode::equals)){
+           throw new CountryCodeUnavailableException("I'm sorry the requested destination currency " +destinationCurrencyCode + " is not one that we currently carry. Please try another currency");
+        } else if(!Arrays.stream(currencyCodes).anyMatch(sourceCurrencyCode ::equals)){
+            throw new CountryCodeUnavailableException("I'm sorry the source currency " +sourceCurrencyCode + " is not currently supported. Please select another currency.");
+        }
     }
 }
