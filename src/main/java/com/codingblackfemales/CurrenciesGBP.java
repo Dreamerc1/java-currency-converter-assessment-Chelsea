@@ -10,7 +10,7 @@ public class CurrenciesGBP implements Currencies {
             {
                 put("GBP", 1.0);
                 put("EUR", 1.16);
-                put("USD", 1.31);
+                put("USD", 1.29);
                 put("JPY", 181.78);
             }
         };

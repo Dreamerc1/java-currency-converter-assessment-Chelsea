@@ -13,7 +13,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
 
     @Override
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) throws ExchangeRateUnavailable, InsufficientAmountEntered {
-    
+    // method that converts currencies from source code to destination code.
         try {
 
         Double sourceRate = currencies.getAllExchangeRates().get(sourceCurrencyCode);
@@ -67,6 +67,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
 
     @Override
     public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode) throws ExchangeRateUnavailable{
+        // method that gets given exchange rate 
         try {
             FindRates findRates = new FindRates();
             double destinationRate = findRates.findValue(destinationCurrencyCode);
@@ -78,14 +79,15 @@ public class BasicCurrencyConverter implements CurrencyConverter{
             }
 
             double transactionExchangeRate = 0;
-            if(!sourceCurrencyCode.toUpperCase().equals("GBP")){
-                transactionExchangeRate = destinationRate;
-                return destinationRate;
-            }else{
+            // if(!sourceCurrencyCode.toUpperCase().equals("GBP")){
+            //     transactionExchangeRate = destinationRate;
+            //     // return destinationRate;
+            // }else{
                 transactionExchangeRate = destinationRate/sourceRate;
-            }
+            
              
-            return Double.parseDouble(String.format("%.2f", transactionExchangeRate));
+            // return Double.parseDouble(String.format("%.2f", transactionExchangeRate));
+            return transactionExchangeRate;
         } catch (Exception e){
             System.out.println("We are unable to provide an exchange rate for this transaction.");
             e.printStackTrace();
@@ -94,6 +96,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
     }
 
      public void checkCode(String destinationCurrencyCode, String sourceCurrencyCode){
+        // check if source code and destination code is available in the the currencies array.
         String[] currencyCodes = getCurrencyCodes();
         if(!Arrays.stream(currencyCodes).anyMatch(destinationCurrencyCode::equals)){
            throw new CountryCodeUnavailableException("I'm sorry the requested destination currency " +destinationCurrencyCode + " is not one that we currently carry. Please try another currency");
