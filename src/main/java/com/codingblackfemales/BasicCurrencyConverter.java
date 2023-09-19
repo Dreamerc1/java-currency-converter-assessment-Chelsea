@@ -14,17 +14,17 @@ public class BasicCurrencyConverter implements CurrencyConverter{
     @Override
     public double convertCurrency(String sourceCurrencyCode, String destinationCurrencyCode, double amount) throws ExchangeRateUnavailable, InsufficientAmountEntered {
     
-                 try {
+        try {
             // CurrencyConverter currencyConverter = new CurrencyConverter();
-            CurrenciesGBP currenciesGBP = new CurrenciesGBP();
-         
-               if(amount <= 0){
-            throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
+            // CurrenciesGBP currenciesGBP = new CurrenciesGBP();
+
+        Double sourceRate = currencies.getAllExchangeRates().get(sourceCurrencyCode);
+        Double destinationRate = currencies.getAllExchangeRates().get(destinationCurrencyCode);
+            if(Double.isNaN(amount)  || amount <= 0){
+                throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
             }
 
-            double convertedTransaction = 0;
-            Double sourceRate = currenciesGBP.getAllExchangeRates().get(sourceCurrencyCode);
-            Double destinationRate = currenciesGBP.getAllExchangeRates().get(destinationCurrencyCode);
+        double convertedTransaction = 0;
             
             if(sourceRate == null || destinationRate == null){
                 throw new ExchangeRateUnavailable("Exchange rate is unavailable for the currencies provided.");
@@ -34,7 +34,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
             }
        
         } catch (ExchangeRateUnavailable e) {
-            System.out.println("We are unable to offer an exchange rate for tis transaction.");
+            System.out.println("We are unable to offer an exchange rate for this transaction.");
             e.printStackTrace();
             return 0.0;
         }
@@ -46,9 +46,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
         
         try {
             
-                CurrenciesGBP currenciesgbp = new CurrenciesGBP();
-
-                Set<String> keys = currenciesgbp.getAllExchangeRates().keySet();
+                Set<String> keys = currencies.getAllExchangeRates().keySet();
                 
                 String[] currencyCodes = new String[keys.size()];
                 int i = 0;

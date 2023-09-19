@@ -1,7 +1,5 @@
 package com.codingblackfemales;
 
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -10,7 +8,7 @@ public class Main {
         BasicCurrencyConverter basicConverter = new BasicCurrencyConverter(currencies);
         basicConverter.getCurrencyCodes();
 
-        basicConverter.getExchangeRate("JPY", "USD");
+        // basicConverter.getExchangeRate("JPY", "USD");
         
     }
 }
