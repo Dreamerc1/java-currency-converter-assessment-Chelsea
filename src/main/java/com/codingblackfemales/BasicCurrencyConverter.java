@@ -71,7 +71,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
         try {
             FindRates findRates = new FindRates();
             double destinationRate = findRates.findValue(destinationCurrencyCode);
-            double sourceRate = findRates.findValue(sourceCurrencyCode.toUpperCase());
+            double sourceRate = findRates.findValue(sourceCurrencyCode);
            
 
             if(sourceCurrencyCode.isEmpty() || destinationCurrencyCode.isEmpty()){
@@ -79,7 +79,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
             }
 
             double transactionExchangeRate = 0;
-            // if(!sourceCurrencyCode.toUpperCase().equals("GBP")){
+            // if(!sourceCurrencyCode.equals("GBP")){
             //     transactionExchangeRate = destinationRate;
             //     // return destinationRate;
             // }else{

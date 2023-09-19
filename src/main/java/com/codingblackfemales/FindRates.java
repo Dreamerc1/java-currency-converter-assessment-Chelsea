@@ -2,7 +2,6 @@ package com.codingblackfemales;
 
 public class FindRates {
     public Double findValue(String checkCodeGetValue){
-        // method will use binary search to find the value in the key value pair of the currency codes array.
         CurrenciesGBP currenciesgbp = new CurrenciesGBP();
         Double rate = currenciesgbp.getAllExchangeRates().get(checkCodeGetValue);
             
