@@ -21,7 +21,8 @@ public class BasicCurrencyConverter implements CurrencyConverter{
         Double sourceRate = currencies.getAllExchangeRates().get(sourceCurrencyCode);
         Double destinationRate = currencies.getAllExchangeRates().get(destinationCurrencyCode);
             if(Double.isNaN(amount)  || amount <= 0){
-                throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
+                // throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
+                return 0.0;
             }
 
         double convertedTransaction = 0;
@@ -77,7 +78,13 @@ public class BasicCurrencyConverter implements CurrencyConverter{
                 throw new ExchangeRateUnavailable("We are unable to offer an exchange rate for this transaction.");
             }
 
-            double transactionExchangeRate =  destinationRate/sourceRate;
+            double transactionExchangeRate = 0;
+            if(sourceCurrencyCode.toUpperCase().equals("GBP")){
+                transactionExchangeRate = destinationRate/sourceRate;
+            }else{
+                transactionExchangeRate = destinationRate;
+            }
+             
             return Double.parseDouble(String.format("%.2f", transactionExchangeRate));
         } catch (Exception e){
             System.out.println("We are unable to provide an exchange rate for this transaction.");
