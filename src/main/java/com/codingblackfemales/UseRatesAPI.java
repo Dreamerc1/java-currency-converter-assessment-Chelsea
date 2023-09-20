@@ -1,29 +1,39 @@
 package com.codingblackfemales;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Properties;
 
 import com.codingblackfemales.exchangeRateAPI.OpenExchangeRates;
+import com.codingblackfemales.exchangeRateAPI.UnavailableExchangeRateException;
 
 public class UseRatesAPI {
-    public void useRatesAPI(String checkCode){
-         try {
-                        String configFilePath = "src/config.properties";
-                        FileInputStream propsInput = new FileInputStream(configFilePath);
+    public double useRatesAPI(String checkCode){
+        
+        String configFilePath = "src/config.properties";
+        try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
+            Properties prop = new Properties();
+            prop.load(propsInput);
 
-                        Properties prop = new Properties();
-                        prop.load(propsInput);
-                        System.out.println(prop.getProperty("DB_USER"));
-                        OpenExchangeRates openExchangeRates = new OpenExchangeRates(prop.getProperty("app_id"));
-                        openExchangeRates.currency(checkCode);
-                    } catch (Exception e) {
-                        // TODO: handle exception
-                    }
+            OpenExchangeRates openExchangeRates = new OpenExchangeRates(prop.getProperty("app_id"));
+                    // openExchangeRates.currency(checkCode);
 
-                    // this returns a big decimal, it will need to be converted to a double with this formula
-//                     BigDecimal bd; // the value you get
-// double d = bd.doubleValue(); // The double you want
+            BigDecimal rate = openExchangeRates.latest().get(checkCode);
+                    
+        
+                if(rate != null){
+                    double returnedValue = rate.doubleValue();
+                    return returnedValue;
+                }else{
+                    System.out.println("I'm sorry, we are unable to provide details for that code.");                        return 0.0;
+                }
+                        
+        } catch (IOException | UnavailableExchangeRateException e) {
+            System.out.println("I'm sorry, we are unable to provide details for that code.");
+            e.printStackTrace();
+            return 0.0;
+        }                    
                     
     }
 }
