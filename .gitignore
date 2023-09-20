@@ -28,3 +28,27 @@ replay_pid*
 
 #VS Code
 .vscode
+
+#CurrencyRate API
+APIKeys.java
+APIKeys
+
+BRLRate.java
+BRLRate
+
+ BasicCurrencyConverter basicConverter = new BasicCurrencyConverter();
+        basicConverter.convertCurrency();
+        OpenExchangeRates openExchangeRates = new OpenExchangeRates("4802c69a40644715a4595bc28345a578");
+		// OpenExchangeRates oer = OpenExchangeRates("YOUR_APP_ID_HERE");
+		// BigDecimal BRLValue = oer.getCurrencyValue("BRL");
+		// System.out.println(BRLValue);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("please enter a currency you wish to look for");
+        String currency = scanner.nextLine().toUpperCase();
+        try {
+            System.out.println(openExchangeRates.currency(currency));
+        } catch (UnavailableExchangeRateException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        scanner.close();

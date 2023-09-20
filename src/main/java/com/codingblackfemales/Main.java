@@ -1,7 +1,11 @@
 package com.codingblackfemales;
 
+import java.io.FileInputStream;
 import java.util.Arrays;
+import java.util.Properties;
 import java.util.Scanner;
+
+import com.codingblackfemales.exchangeRateAPI.OpenExchangeRates;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,6 +33,22 @@ public class Main {
         sourceCurrencyCode = scanner.nextLine().toUpperCase();
 
         basicConverter.checkCode(destinationCurrencyCode, sourceCurrencyCode);
+        
+        if(!basicConverter.checkCode(destinationCurrencyCode, sourceCurrencyCode)){
+            // if basic currency converter does not carry the code that triggered. User gets the option to use a live rate generatin api.
+            System.out.println("Would you like to search the live rate database instead?");
+            System.out.println("Please type your answer yes or no");
+            String checkRatesAPI = scanner.next();
+
+                if(checkRatesAPI.equalsIgnoreCase("yes")){
+                    UseRatesAPI checkAPI = new UseRatesAPI();
+                   checkAPI.useRatesAPI(destinationCurrencyCode);
+                    
+                }else{
+                    System.out.println("Thank you for using CBF Currency Converter!");
+                    System.exit(0);
+                }
+        }
 
         System.out.println("Please enter the amount that you would like to convert.");       
 
@@ -44,6 +64,7 @@ public class Main {
 
         if(!transactionCorrect.equalsIgnoreCase("yes")){
             System.out.println("Please start again.");
+            System.exit(0);
         }
 
         double transactionExchangeRate = basicConverter.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
@@ -54,6 +75,9 @@ public class Main {
 
         String formatTotal = String .format("%.2f", convertedCurrency);
         System.out.println("This amount converts to "+formatTotal +" "+ destinationCurrencyCode);
+
+        // have a look at putting timers on rate before they expire
+        // indicitaive rate is ...
 
         scanner.close();
     }

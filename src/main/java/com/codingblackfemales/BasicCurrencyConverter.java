@@ -1,7 +1,11 @@
 package com.codingblackfemales;
 
+import java.io.FileInputStream;
 import java.util.Arrays;
+import java.util.Properties;
 import java.util.Set;
+
+import com.codingblackfemales.exchangeRateAPI.OpenExchangeRates;
 
 public class BasicCurrencyConverter implements CurrencyConverter{
 
@@ -29,8 +33,8 @@ public class BasicCurrencyConverter implements CurrencyConverter{
             if(sourceRate == null || destinationRate == null){
                 throw new ExchangeRateUnavailable("Exchange rate is unavailable for the currencies provided.");
             }else{
-                convertedTransaction = amount * (destinationRate / sourceRate);
-                // convertedTransaction = amount * getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
+                // convertedTransaction = amount * (destinationRate / sourceRate);
+                convertedTransaction = amount * getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
             return convertedTransaction;       
             }
        
@@ -69,7 +73,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
     public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode) throws ExchangeRateUnavailable{
         // method that gets given exchange rate 
         try {
-            FindRates findRates = new FindRates();
+            FindRates findRates = new FindRates(currencies);
             double destinationRate = findRates.findValue(destinationCurrencyCode);
             double sourceRate = findRates.findValue(sourceCurrencyCode);
            
@@ -79,13 +83,9 @@ public class BasicCurrencyConverter implements CurrencyConverter{
             }
 
             double transactionExchangeRate = 0;
-            // if(!sourceCurrencyCode.equals("GBP")){
-            //     transactionExchangeRate = destinationRate;
-            //     // return destinationRate;
-            // }else{
+            
                 transactionExchangeRate = destinationRate/sourceRate;
             
-             
             // return Double.parseDouble(String.format("%.2f", transactionExchangeRate));
             return transactionExchangeRate;
         } catch (Exception e){
@@ -95,13 +95,44 @@ public class BasicCurrencyConverter implements CurrencyConverter{
         } 
     }
 
-     public void checkCode(String destinationCurrencyCode, String sourceCurrencyCode){
+     public boolean checkCode(String destinationCurrencyCode, String sourceCurrencyCode) throws CountryCodeUnavailableException{
         // check if source code and destination code is available in the the currencies array.
+        boolean sourceCodeAvailable = true;
+        boolean destinationCodeAvailable = true;
+        boolean bothAvailable = true;
         String[] currencyCodes = getCurrencyCodes();
-        if(!Arrays.stream(currencyCodes).anyMatch(destinationCurrencyCode::equals)){
-           throw new CountryCodeUnavailableException("I'm sorry the requested destination currency " +destinationCurrencyCode + " is not one that we currently carry. Please try another currency");
-        } else if(!Arrays.stream(currencyCodes).anyMatch(sourceCurrencyCode ::equals)){
-            throw new CountryCodeUnavailableException("I'm sorry the source currency " +sourceCurrencyCode + " is not currently supported. Please select another currency.");
+
+        if(!Arrays.stream(currencyCodes).anyMatch(destinationCurrencyCode::equals) && !Arrays.stream(currencyCodes).anyMatch(sourceCurrencyCode ::equals)){
+           
+            destinationCodeAvailable = false;
+            sourceCodeAvailable = false;
+            bothAvailable = false;
+            System.out.println("I'm sorry, neither the source rate or destination rate are available on the traditional currency converter at this time.");
+            return bothAvailable;
+
+        } else if(!Arrays.stream(currencyCodes).anyMatch(destinationCurrencyCode::equals) && Arrays.stream(currencyCodes).anyMatch(sourceCurrencyCode ::equals)){
+            destinationCodeAvailable = false;
+            sourceCodeAvailable = true;
+            bothAvailable = false;
+            System.out.println("I'm sorry the requested destination currency " +destinationCurrencyCode + " is not one that we currently carry on the traditional currency converter.");
+            return destinationCodeAvailable;
+
+        } else if(Arrays.stream(currencyCodes).anyMatch(destinationCurrencyCode::equals) && !Arrays.stream(currencyCodes).anyMatch(sourceCurrencyCode ::equals)){
+            
+            destinationCodeAvailable = true;
+            sourceCodeAvailable = false;
+            bothAvailable = false;
+            System.out.println("I'm sorry the source currency " +sourceCurrencyCode + " is not one that we currently carry on the traditional currency converter.");
+            return sourceCodeAvailable;
+
+        } else {
+            
+            destinationCodeAvailable = true;
+            sourceCodeAvailable = true;
+            bothAvailable = true;
+            return bothAvailable;
         }
     }
+
+    
 }

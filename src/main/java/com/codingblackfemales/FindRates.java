@@ -1,9 +1,21 @@
 package com.codingblackfemales;
 
 public class FindRates {
+
+    private Currencies currencies;
+
+    public FindRates(Currencies currencies){
+
+        this.currencies = currencies;
+        
+    }
+
     public Double findValue(String checkCodeGetValue){
-        CurrenciesGBP currenciesgbp = new CurrenciesGBP();
-        Double rate = currenciesgbp.getAllExchangeRates().get(checkCodeGetValue);
+
+        
+        Double rate = currencies.getAllExchangeRates().get(checkCodeGetValue);
+        // dependency injection
+        
             
         if(rate != null){
             return rate;
