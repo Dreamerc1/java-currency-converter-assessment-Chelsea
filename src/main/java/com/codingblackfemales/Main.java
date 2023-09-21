@@ -44,15 +44,16 @@ public class Main {
             double APISourceRate = 0.0;
             double APIDestinationRate = 0.0;
 
-                if(checkRatesAPI.equalsIgnoreCase("yes") && basicConverter.checkCode(destinationCurrencyCode, sourceCurrencyCode).equals(false)){
-                    APISourceRate = checkAPI.useRatesAPI(sourceCodeAvailable);
+                if(checkRatesAPI.equalsIgnoreCase("yes")){
+
+                    if(!sourceCodeAvailable){
+                        APISourceRate = checkAPI.useRatesAPI(sourceCodeAvailable);
+                    }
                     
-                }else if(checkRatesAPI.equalsIgnoreCase("yes") && destinationCurrencyCode.equals(false)){
-                    APIDestinationRate = checkAPI.useRatesAPI(destinationCodeAvailable);
-                
-                }else if(checkRatesAPI.equalsIgnoreCase("yes") && both.equals(false)){
-                APIDestinationRate = checkAPI.useRatesAPI(destinationCodeAvailable);
-                APISourceRate = checkAPI.useRatesAPI(sourceCodeAvailable);
+                    if(!destinationCodeAvailable){
+                        APIDestinationRate = checkAPI.useRatesAPI(destinationCodeAvailable);
+                    }
+                    
                 }else{
                     System.out.println("Thank you for using CBF Currency Converter!");
                     System.exit(0);
