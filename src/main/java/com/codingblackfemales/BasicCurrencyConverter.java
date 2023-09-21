@@ -95,44 +95,19 @@ public class BasicCurrencyConverter implements CurrencyConverter{
         } 
     }
 
-     public boolean checkCode(String destinationCurrencyCode, String sourceCurrencyCode) throws CountryCodeUnavailableException{
+    // change code to pass one perameter. check code individually
+
+     public boolean checkCode(String code) throws CountryCodeUnavailableException{
         // check if source code and destination code is available in the the currencies array.
-        boolean sourceCodeAvailable = true;
-        boolean destinationCodeAvailable = true;
-        boolean bothAvailable = true;
         String[] currencyCodes = getCurrencyCodes();
+        boolean codeAvailable = Arrays.stream(currencyCodes).anyMatch(code ::equals);
 
-        if(!Arrays.stream(currencyCodes).anyMatch(destinationCurrencyCode::equals) && !Arrays.stream(currencyCodes).anyMatch(sourceCurrencyCode ::equals)){
-           
-            destinationCodeAvailable = false;
-            sourceCodeAvailable = false;
-            bothAvailable = false;
-            System.out.println("I'm sorry, neither the source rate or destination rate are available on the traditional currency converter at this time.");
-            return bothAvailable;
-
-        } else if(!Arrays.stream(currencyCodes).anyMatch(destinationCurrencyCode::equals) && Arrays.stream(currencyCodes).anyMatch(sourceCurrencyCode ::equals)){
-            destinationCodeAvailable = false;
-            sourceCodeAvailable = true;
-            bothAvailable = false;
-            System.out.println("I'm sorry the requested destination currency " +destinationCurrencyCode + " is not one that we currently carry on the traditional currency converter.");
-            return destinationCodeAvailable;
-
-        } else if(Arrays.stream(currencyCodes).anyMatch(destinationCurrencyCode::equals) && !Arrays.stream(currencyCodes).anyMatch(sourceCurrencyCode ::equals)){
-            
-            destinationCodeAvailable = true;
-            sourceCodeAvailable = false;
-            bothAvailable = false;
-            System.out.println("I'm sorry the source currency " +sourceCurrencyCode + " is not one that we currently carry on the traditional currency converter.");
-            return sourceCodeAvailable;
-
-        } else {
-            
-            destinationCodeAvailable = true;
-            sourceCodeAvailable = true;
-            bothAvailable = true;
-            return bothAvailable;
+        if(!codeAvailable){
+            return false;
+        } else{
+            return true;
         }
+        
     }
-
     
 }
