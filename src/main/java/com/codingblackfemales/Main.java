@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.Scanner;
 
-import com.codingblackfemales.exchangeRateAPI.OpenExchangeRates;
+// import com.codingblackfemales.exchangeRateAPI.OpenExchangeRates;
 
 public class Main {
     public static void main(String[] args) {
@@ -58,7 +58,7 @@ public class Main {
                             Properties prop = new Properties();
                             prop.load(propsInput);
 
-                            OpenExchangeRates openExchangeRates = new OpenExchangeRates(prop.getProperty("app_id"));
+                            // OpenExchangeRates openExchangeRates = new OpenExchangeRates(prop.getProperty("app_id"));
                             
 
                                 // BigDecimal APISourceRate = useRatesAPI.findRatesInAPI(sourceCurrencyCode);

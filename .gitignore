@@ -36,6 +36,8 @@ APIKeys
 BRLRate.java
 BRLRate
 
+config.properties
+
  BasicCurrencyConverter basicConverter = new BasicCurrencyConverter();
         basicConverter.convertCurrency();
         OpenExchangeRates openExchangeRates = new OpenExchangeRates("4802c69a40644715a4595bc28345a578");
