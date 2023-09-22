@@ -14,7 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
 public class Api {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws  {
         
             // check js docs on how to get code we are searching for instead of usd as a base rate;
             // URL url = new URL("http://api.exchangeratesapi.io/v1/");

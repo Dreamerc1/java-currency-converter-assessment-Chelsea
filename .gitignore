@@ -36,7 +36,18 @@ APIKeys
 BRLRate.java
 BRLRate
 
-config.properties
+removed from config.properties
+DB_USER=niru
+app_id=4802c69a40644715a4595bc28345a578
+// https://exchangeratesapi.io/documentation/ URL url = new URL("http://api.exchangeratesapi.io/v1/latest?access_key=b20f6704cf558e30f2d399c5b0865f4e&format=1");
+API_Key=b20f6704cf558e30f2d399c5b0865f4e
+
+
+                        URL url = new URL("http://api.exchangeratesapi.io/v1/latest?access_key=b20f6704cf558e30f2d399c5b0865f4e&format=1");
+https://www.exchangerate-api.com/docs/standard-requests
+
+https://exchangeratesapi.io/documentation/
+
 
  BasicCurrencyConverter basicConverter = new BasicCurrencyConverter();
         basicConverter.convertCurrency();
