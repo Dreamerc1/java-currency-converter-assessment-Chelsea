@@ -48,6 +48,12 @@ https://www.exchangerate-api.com/docs/standard-requests
 
 https://exchangeratesapi.io/documentation/
 
+tobyns code input
+ //                     String s = "the text=text";String s1 = s.substring(s.indexOf("=") + 1);
+        // s1.trim(); for each item in array
+        // could also create an object that stores all rates ask object for the rates
+        // taek string look for substring
+
 
  BasicCurrencyConverter basicConverter = new BasicCurrencyConverter();
         basicConverter.convertCurrency();

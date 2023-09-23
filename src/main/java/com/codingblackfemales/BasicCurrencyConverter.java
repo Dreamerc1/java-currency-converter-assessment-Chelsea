@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.Set;
 
-import com.codingblackfemales.exchangeRateAPI.OpenExchangeRates;
-
 public class BasicCurrencyConverter implements CurrencyConverter{
 
     private Currencies currencies;

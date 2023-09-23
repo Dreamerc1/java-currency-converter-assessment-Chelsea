@@ -6,15 +6,17 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
+import org.json.simple.parser.ParseException;
 
 // import com.codingblackfemales.exchangeRateAPI.OpenExchangeRates;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-
+    public static void main(String[] args) throws InterruptedException, IOException {
         Currencies currencies = new CurrenciesGBP();
         BasicCurrencyConverter basicConverter = new BasicCurrencyConverter(currencies);
+        TimeDelay timeDelay = new TimeDelay();
 
         String sourceCurrencyCode = "";
 
@@ -22,9 +24,17 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Welcome to the currency converter!");
+
+        timeDelay.timeDelay(1000);
+
         System.out.println("Here are a list of the currencies codes currently available");
 
+        timeDelay.timeDelay(500);
+
         System.out.println(Arrays.toString(basicConverter.getCurrencyCodes()));
+
+        timeDelay.timeDelay(1250);
 
         System.out.println("Please enter your chosen destination currency.");
 
@@ -40,102 +50,102 @@ public class Main {
 
         boolean traditionalRoute = true;
 
-        UseRatesAPI useRatesAPI = new UseRatesAPI();
+        double transactionExchangeRate = 0.0;
 
         if(!sourceAvailable || !destinationAvailable){
             traditionalRoute = false;
-            System.out.println("I'm sorry, the rate for your source currency or destination currency are unavailable on the traditional currency converter at this time.");
-            System.out.println("Would you like to search the live rate database instead?");
-            System.out.println("Please type your answer yes or no");
-            String checkRatesAPI = scanner.next();
-            
+            timeDelay.timeDelay(500);
 
-                if(checkRatesAPI.equalsIgnoreCase("yes")){
+            if(!sourceAvailable && !destinationAvailable){
+            System.out.println("I'm sorry, the rate for your source currency and destination currency are unavailable on the traditional currency converter at this time.");
+            } else if(!sourceAvailable && destinationAvailable){ 
+            traditionalRoute = false;
+            System.out.println("I'm sorry, we cannot offer a rate for " + sourceCurrencyCode+ " on the traditional currency converter at this time.");
+            } else if(!destinationAvailable && sourceAvailable){
+            traditionalRoute = false;
+            System.out.println("I'm sorry, we cannot offer a rate for " + destinationCurrencyCode+ " on the traditional currency converter at this time.");
+            } 
+        
+                if(!traditionalRoute){
+                timeDelay.timeDelay(250);
+                System.out.println("Would you like to search the live rate database instead?");
+                timeDelay.timeDelay(500);
+                System.out.println("Please type your answer yes or no");
+                String checkRatesAPI = scanner.next();
+
+                    if(checkRatesAPI.equalsIgnoreCase("yes")){
+                    timeDelay.timeDelay(500);
+                    System.out.println("Please note these rates are live and may fluctuate hourly. Currency converter cannot guarantee a rate you may have seen earlier if you decide not to proceed with yor transaction.");
                     
-                    String configFilePath = "src/config.properties";
-                    
-                        try (FileInputStream propsInput = new FileInputStream("src/main/java/com/codingblackfemales/config.properties")) {
-                            Properties prop = new Properties();
-                            prop.load(propsInput);
-
-                            // OpenExchangeRates openExchangeRates = new OpenExchangeRates(prop.getProperty("app_id"));
-                            
-
-                                // BigDecimal APISourceRate = useRatesAPI.findRatesInAPI(sourceCurrencyCode);
-                                // double returnedSource = APISourceRate.doubleValue();
-                                
-                                // BigDecimal APIDestinationRate = useRatesAPI.findRatesInAPI(destinationCurrencyCode);
-                                // double returnedDestination = APIDestinationRate.doubleValue();
-
-                               double exRate =  useRatesAPI.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
-
-                               System.out.println("ex rate is "+ exRate);
-                                // System.out.println("returned rates are source:" + returnedSource + "returned destination:" + returnedDestination );
-
-                                
-                        }catch(ExchangeRateUnavailable | IOException e){
-                            System.out.println("We are unable to obtain a live rate for you at the moment. Please try again later.");
+                    try {
+                        UseRatesAPI useAPI = new UseRatesAPI();
+                        try {
+                            transactionExchangeRate = useAPI.useApi(sourceCurrencyCode, destinationCurrencyCode);
+                            // may wish to return here to as if they would like to proceed
+                        } catch (ParseException e) {
+                            timeDelay.timeDelay(250);
+                            System.out.println("I'm sorry, a fatal error has occurred while retrieving data from API.");
                             e.printStackTrace();
                         }
-
-
-        // check if source and destination code are available
-
-        
-
-
-        // if eaither code is not available throw the else asking if they would like to check live rate converter.
-
-
-        
-            // double APISourceRate = 0.0;
-            // double APIDestinationRate = 0.0;
-            // this may be able to go
-
-                
-// think about if you would like to build the rest of the method here or in useRatesAPI
-
-                    
-                    
-                }else{
-                    System.out.println("Thank you for using CBF Currency Converter!");
-                    System.exit(0);
+                    } catch (ExchangeRateUnavailable e) {
+                        timeDelay.timeDelay(250);
+                        System.out.println("We are unable to obtain a live rate for you at the moment. Please try again later.");
+                    }
+            
+                    }else{
+                        timeDelay.timeDelay(400);
+                        System.out.println("Thank you for using Currency Converter!");
+                        System.exit(0);
+                    }
                 }
-        }
+            }
 
-        System.out.println("Please enter the amount that you would like to convert.");       
+            timeDelay.timeDelay(250);
+            System.out.println("Please enter the amount that you would like to convert.");       
 
-        double amount = scanner.nextDouble();
+            double amount = scanner.nextDouble();
 
-        String formatAmount = String.format("%.2f", amount);
+            String formatAmount = String.format("%.2f", amount);
+
+            timeDelay.timeDelay(250);
+            
+            System.out.printf("You would like to convert %s %s into %s. Is this correct?\n", formatAmount, sourceCurrencyCode, destinationCurrencyCode);
+
+            timeDelay.timeDelay(250);
+            System.out.println("Please type yes or no");
         
-        System.out.printf("You would like to convert %s %s into %s. Is this correct?\n", formatAmount, sourceCurrencyCode, destinationCurrencyCode);
+            String transactionCorrect = scanner.next();
+            scanner.close();
 
-        System.out.println("Please type yes or no");
-        
-        String transactionCorrect = scanner.next();
+            if(!transactionCorrect.equalsIgnoreCase("yes")){
+                timeDelay.timeDelay(100);
+                System.out.println("Apologies for the inconvenience, please start again.");
+                System.exit(0);
+            }
+            String formatRate = "";
+            String formatTotal = "";
 
-        if(!transactionCorrect.equalsIgnoreCase("yes")){
-            System.out.println("Please start again.");
-            System.exit(0);
-        }
+            if(!traditionalRoute){
+                UseRatesAPI useAPI = new UseRatesAPI();
+                timeDelay.timeDelay(250);
+                formatRate = String.format("%.2f", transactionExchangeRate);
+                System.out.println("The live exchange rate for this transaction is " + formatRate+"%.");
+                double apiConvertedCurrency = useAPI.apiConversion(transactionExchangeRate, amount);
+                formatTotal = String.format("%.2f", apiConvertedCurrency);
+                timeDelay.timeDelay(500);
+                System.out.println("This amount converts to "+formatTotal +" "+ destinationCurrencyCode);
+            }else{
+                transactionExchangeRate = basicConverter.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
+                timeDelay.timeDelay(250);
+                formatRate = String.format("%.2f", transactionExchangeRate);
+                System.out.println("The exchange rate for this transaction is " + transactionExchangeRate);
+                double convertedCurrency = basicConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, amount);
+                formatTotal = String .format("%.2f", convertedCurrency);
+                timeDelay.timeDelay(500);
+                System.out.println("This amount converts to "+formatTotal +" "+ destinationCurrencyCode);
+            }            
 
-        double transactionExchangeRate = 0.0;
-        if(!traditionalRoute){
-            transactionExchangeRate = useRatesAPI.getExchangeRate(transactionCorrect, transactionCorrect);
-        }
-        transactionExchangeRate = basicConverter.getExchangeRate(sourceCurrencyCode, destinationCurrencyCode);
-
-        System.out.println("The exchange rate for this transaction is " + transactionExchangeRate);
-
-        double convertedCurrency = basicConverter.convertCurrency(sourceCurrencyCode, destinationCurrencyCode, amount);
-
-        String formatTotal = String .format("%.2f", convertedCurrency);
-        System.out.println("This amount converts to "+formatTotal +" "+ destinationCurrencyCode);
-
-        // have a look at putting timers on rate before they expire
-        // indicitaive rate is ...
-
-        scanner.close();
+            timeDelay.timeDelay(600);
+            System.out.println("We hope you enjoyed your experience with Currency Converter today!");
     }
 }
