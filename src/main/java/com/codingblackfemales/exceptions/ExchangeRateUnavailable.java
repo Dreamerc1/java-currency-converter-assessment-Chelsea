@@ -1,4 +1,4 @@
-package com.codingblackfemales;
+package com.codingblackfemales.exceptions;
 
 public class ExchangeRateUnavailable extends IllegalArgumentException{
     public ExchangeRateUnavailable(){}
@@ -14,4 +14,3 @@ public class ExchangeRateUnavailable extends IllegalArgumentException{
         super(message, cause);
         }
 }
-

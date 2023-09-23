@@ -1,3 +1,4 @@
+// this class uses the api to retrieve the data from the api.
 package com.codingblackfemales;
 
 import java.io.FileInputStream;
@@ -13,6 +14,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.codingblackfemales.exceptions.ExchangeRateUnavailable;
+import com.codingblackfemales.exceptions.InsufficientAmountEntered;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,7 +37,7 @@ public class UseRatesAPI {
                 String apiUrl = String.format("https://v6.exchangerate-api.com/v6/%s/latest/%s", apiKey, sourceCurrencyCode);
                 URL url =new URL(apiUrl);
 
-                // deals with connecting to the api usung a Http url connection and sending a GET request.
+                // deals with connecting to the api using a Http url connection and sending a GET request.
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.connect();
@@ -42,7 +45,8 @@ public class UseRatesAPI {
                 int responseCode = connection.getResponseCode();
                 
                     if(responseCode != 200){
-                        // retireves the response code and throws an exception if the response is other that ok.
+                        // retrieves the response code and throws an exception if the response is other that ok.
+                        System.out.println("I'm sorry, neither our live rate converter or the original converter carry a rate for that currency.");
                         throw new RuntimeErrorException(null, "HttpResponseCode:" + responseCode);
                     } else{
                         StringBuilder informationString = new StringBuilder();
@@ -54,12 +58,13 @@ public class UseRatesAPI {
                         }
                             scanner.close();
  
-                            JSONParser parse = new JSONParser();
+                            // JSONParser parse = new JSONParser();
                             // we dealing with the JSON object returned  in the stream
-                            JSONObject apiData = (JSONObject) parse.parse(String.valueOf(informationString));
+                            // JSONObject apiData = (JSONObject) parse.parse(String.valueOf(informationString));
  
                             ObjectMapper mapper = new ObjectMapper();
                             JsonNode rootNode = mapper.readTree(informationString.toString());
+                            // this code will parse the json data from the API and map it to a java object, it uses the Jackson library which enables the use of JSON in java
 
                                 if(rootNode.has("conversion_rates")){
                                     JsonNode conversionRateNode = rootNode.get("conversion_rates");

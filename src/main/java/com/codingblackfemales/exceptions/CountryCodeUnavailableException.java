@@ -1,4 +1,4 @@
-package com.codingblackfemales;
+package com.codingblackfemales.exceptions;
 
 public class CountryCodeUnavailableException extends IllegalArgumentException {
     public CountryCodeUnavailableException(){}

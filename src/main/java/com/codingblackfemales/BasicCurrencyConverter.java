@@ -1,9 +1,13 @@
+/*This class implements the inherited methods from the Currency Converter class and executes them. I have also added a few other methods to support functions used in the original currency converter. */
+
 package com.codingblackfemales;
 
-import java.io.FileInputStream;
 import java.util.Arrays;
-import java.util.Properties;
 import java.util.Set;
+
+import com.codingblackfemales.exceptions.CountryCodeUnavailableException;
+import com.codingblackfemales.exceptions.ExchangeRateUnavailable;
+import com.codingblackfemales.exceptions.InsufficientAmountEntered;
 
 public class BasicCurrencyConverter implements CurrencyConverter{
 
@@ -22,7 +26,6 @@ public class BasicCurrencyConverter implements CurrencyConverter{
         Double destinationRate = currencies.getAllExchangeRates().get(destinationCurrencyCode);
             if(Double.isNaN(amount)  || amount <= 0){
                 System.out.println("Invalid request for conversion. Please enter an amount greater than 0.");
-                // throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
                 return 0.0;
             }
 
@@ -93,7 +96,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
         } 
     }
 
-    // change code to pass one perameter. check code individually
+    // change code to pass one parameter. check code individually
 
      public boolean checkCode(String code) throws CountryCodeUnavailableException{
         // check if source code and destination code is available in the the currencies array.

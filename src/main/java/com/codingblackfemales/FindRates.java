@@ -1,5 +1,7 @@
 package com.codingblackfemales;
 
+import com.codingblackfemales.exceptions.ExchangeRateUnavailable;
+
 public class FindRates {
 
     private Currencies currencies;
