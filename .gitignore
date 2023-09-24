@@ -28,3 +28,46 @@ replay_pid*
 
 #VS Code
 .vscode
+
+#CurrencyRate API
+APIKeys.java
+APIKeys
+
+BRLRate.java
+BRLRate
+
+removed from config.properties
+DB_USER=niru
+app_id=4802c69a40644715a4595bc28345a578
+// https://exchangeratesapi.io/documentation/ URL url = new URL("http://api.exchangeratesapi.io/v1/latest?access_key=b20f6704cf558e30f2d399c5b0865f4e&format=1");
+API_Key=b20f6704cf558e30f2d399c5b0865f4e
+
+
+                        URL url = new URL("http://api.exchangeratesapi.io/v1/latest?access_key=b20f6704cf558e30f2d399c5b0865f4e&format=1");
+https://www.exchangerate-api.com/docs/standard-requests
+
+https://exchangeratesapi.io/documentation/
+
+tobyns code input
+ //                     String s = "the text=text";String s1 = s.substring(s.indexOf("=") + 1);
+        // s1.trim(); for each item in array
+        // could also create an object that stores all rates ask object for the rates
+        // taek string look for substring
+
+
+ BasicCurrencyConverter basicConverter = new BasicCurrencyConverter();
+        basicConverter.convertCurrency();
+        OpenExchangeRates openExchangeRates = new OpenExchangeRates("4802c69a40644715a4595bc28345a578");
+		// OpenExchangeRates oer = OpenExchangeRates("YOUR_APP_ID_HERE");
+		// BigDecimal BRLValue = oer.getCurrencyValue("BRL");
+		// System.out.println(BRLValue);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("please enter a currency you wish to look for");
+        String currency = scanner.nextLine().toUpperCase();
+        try {
+            System.out.println(openExchangeRates.currency(currency));
+        } catch (UnavailableExchangeRateException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        scanner.close();
