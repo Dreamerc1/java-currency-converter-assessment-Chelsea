@@ -9,9 +9,9 @@ public class UserInterface {
         
         Currencies currencies = new CurrenciesGBP();
         BasicCurrencyConverter basicConverter = new BasicCurrencyConverter(currencies);
-        Using using = new Using();
+        clientInterractions using = new clientInterractions();
         Scanner scanner = new Scanner(System.in);
-        UI ui = new UI();
+        APIUi ui = new APIUi();
         
 
        
@@ -37,7 +37,7 @@ public class UserInterface {
 
         if(numberOfConversions != 1){
             scanner.nextLine();
-            ui.startLiveConverter(numberOfConversions);
+            ui.startLiveConverter(numberOfConversions, scanner);
         }
         
         using.timeDelay(400);
@@ -71,7 +71,7 @@ public class UserInterface {
                 System.exit(0);
             }else{
                 System.out.println("Please note these rates are live and may fluctuate hourly. Currency converter cannot guarantee a rate you may have seen earlier if you decide not to proceed with yor transaction.");
-                ui.startLiveConverter(numberOfConversions);
+                ui.startLiveConverter(numberOfConversions, scanner);
             }
         }else{
         System.out.println("Please enter the amount that you would like to convert.");       

@@ -9,7 +9,7 @@ import org.json.simple.parser.ParseException;
 import com.codingblackfemales.exceptions.ExchangeRateUnavailable;
 import com.codingblackfemales.exceptions.InsufficientAmountEntered;
 
-public class Using {
+public class clientInterractions {
    
     private String sourceCurrencyCode;
     private String destinationCurrencyCode;
