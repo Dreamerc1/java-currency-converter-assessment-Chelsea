@@ -1,3 +1,4 @@
+// The interface required for the assessment, it tells basic currency converter the methods that it needs to use, but now how to use them.
 package com.codingblackfemales;
 
 public interface CurrencyConverter {

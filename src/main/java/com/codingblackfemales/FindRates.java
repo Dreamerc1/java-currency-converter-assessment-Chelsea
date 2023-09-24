@@ -1,3 +1,4 @@
+// method used to search the currenciesGBP hashMap and locate the rate from its key value pairs.
 package com.codingblackfemales;
 
 import com.codingblackfemales.exceptions.ExchangeRateUnavailable;

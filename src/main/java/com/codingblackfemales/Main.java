@@ -40,10 +40,11 @@ public class Main {
 
         timeDelay.timeDelay(400);
 
-        System.out.println("would you like to use the original currency converter or the live rate currency converter?");
+        System.out.println("Would you like to use the original currency converter or the live rate currency converter?");
         timeDelay.timeDelay(250);
+        System.out.println();
         System.out.println("please select 1 for the original converter and 2 for the live rate converter. Please press the enter key after making your decision.");
-
+        System.out.println();
         int selectConverter = scanner.nextInt();
         scanner.nextLine();
 
@@ -138,6 +139,7 @@ public class Main {
 
             double amount = scanner.nextDouble();
             if(!originalRoute && amount < 0){
+                System.out.println("Invalid request for conversion. Please enter an amount greater than 0.");
                 throw new InsufficientAmountEntered("Invalid request for conversion. Please enter an amount greater than 0.");
             }
 

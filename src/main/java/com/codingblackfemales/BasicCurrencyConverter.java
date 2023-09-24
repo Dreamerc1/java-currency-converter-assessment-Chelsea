@@ -72,7 +72,7 @@ public class BasicCurrencyConverter implements CurrencyConverter{
 
     @Override
     public double getExchangeRate(String sourceCurrencyCode, String destinationCurrencyCode) throws ExchangeRateUnavailable{
-        // method that gets given exchange rate 
+        // method that retrieves given exchange rate between source currency code and destination currency code.
         try {
             FindRates findRates = new FindRates(currencies);
             double destinationRate = findRates.findValue(destinationCurrencyCode);
@@ -96,10 +96,8 @@ public class BasicCurrencyConverter implements CurrencyConverter{
         } 
     }
 
-    // change code to pass one parameter. check code individually
-
      public boolean checkCode(String code) throws CountryCodeUnavailableException{
-        // check if source code and destination code is available in the the currencies array.
+        // check if source code or destination code is available in the the currencies array. It allows us to toggle the option to use the live rate converter is necessary. 
         String[] currencyCodes = getCurrencyCodes();
         boolean codeAvailable = Arrays.stream(currencyCodes).anyMatch(code ::equals);
 
