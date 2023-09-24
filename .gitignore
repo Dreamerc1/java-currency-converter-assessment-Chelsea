@@ -36,6 +36,8 @@ APIKeys
 BRLRate.java
 BRLRate
 
+delete.txt
+
 removed from config.properties
 DB_USER=niru
 app_id=4802c69a40644715a4595bc28345a578
