@@ -8,10 +8,6 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.Scanner;
 
-import javax.management.RuntimeErrorException;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.codingblackfemales.exceptions.CountryCodeUnavailableException;
